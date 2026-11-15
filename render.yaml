@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: youtube-downloader
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      - key: PORT
+        value: 8000
+      # Cloudflare R2 (free tier) — file storage. Leave unset to fall
+      # back to the container's local disk (ephemeral on Render free).
+      - key: R2_ENDPOINT
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET
+        sync: false
+      # 60-second per-IP cooldown between prepares (ytdown.to parity).
+      # Set to 0 to disable.
+      - key: COOLDOWN_SECONDS
+        value: 60
+      - key: MAX_WORKERS
+        value: 2
