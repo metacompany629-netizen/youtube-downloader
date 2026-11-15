@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouTube Downloader — free, no sign-up</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="wrap">
+  <h1>Paste a YouTube link</h1>
+
+  <div class="paste-row">
+    <input id="url-input" type="text" placeholder="https://www.youtube.com/watch?v=…" autocomplete="off" spellcheck="false">
+    <button id="paste-btn" type="button">Paste</button>
+  </div>
+  <button id="go-btn" class="big-download" type="button">⬇ Download</button>
+  <p class="hint">Videos, Shorts, music and playlist links all work. Paste several links at once (one per line) for batch mode. Free, no sign-up.</p>
+  <p id="error" class="error" hidden></p>
+
+  <section id="batch-box" class="panel" hidden>
+    <h2>Batch mode</h2>
+    <p class="muted">Several links detected — prepare them all at the default quality.</p>
+    <div class="row">
+      <select id="batch-quality"></select>
+      <button id="batch-go" class="btn" type="button">Prepare all</button>
+    </div>
+    <ul id="batch-list" class="job-list"></ul>
+  </section>
+
+  <div id="result" class="result" hidden>
+    <section class="panel info">
+      <h2>Information</h2>
+      <img id="info-thumb" alt="Video thumbnail">
+      <p class="channel" id="info-channel"></p>
+      <p class="title" id="info-title"></p>
+      <div class="facts">
+        <div><span class="fact-label">DURATION</span><span id="info-duration"></span></div>
+        <div><span class="fact-label">VIEWS</span><span id="info-views"></span></div>
+        <div><span class="fact-label">LIKES</span><span id="info-likes"></span></div>
+        <div><span class="fact-label">UPLOADED</span><span id="info-uploaded"></span></div>
+      </div>
+      <button id="thumb-btn" class="btn ghost" type="button">⬇ Download HD thumbnail</button>
+      <a id="thumb-link" class="btn-download" hidden>⬇ Download HD thumbnail</a>
+    </section>
+
+    <section class="panel media">
+      <h2>Media</h2>
+      <select id="format-select"></select>
+      <p class="filesize">File Size: <span id="file-size">—</span></p>
+      <!-- THE download button: a plain anchor to the same-origin
+           /download route. No JavaScript intercepts this click:
+           the browser itself streams the file to Downloads. -->
+      <a id="download-btn" class="btn-download" href="#" download>⬇ Download</a>
+      <p id="download-note" class="muted mono"></p>
+      <div id="prepare-progress" class="progress" hidden>
+        <div id="prepare-bar" class="bar"><i></i></div>
+        <p id="prepare-line" class="muted mono"></p>
+      </div>
+
+      <h3>SUBTITLES</h3>
+      <div class="row">
+        <select id="sub-lang"></select>
+        <div class="toggle" role="group" aria-label="Subtitle format">
+          <button id="sub-srt" class="toggle-btn active" type="button">SRT</button>
+          <button id="sub-vtt" class="toggle-btn" type="button">VTT</button>
+        </div>
+      </div>
+      <button id="sub-btn" class="btn" type="button">⬇ Download subtitles (SRT)</button>
+      <a id="sub-link" class="btn-download" hidden>⬇ Download subtitles</a>
+
+      <h3>AUDIO</h3>
+      <div class="row audio-row">
+        <button class="btn audio-btn" data-fmt="mp3" type="button">MP3</button>
+        <button class="btn audio-btn" data-fmt="m4a" type="button">M4A</button>
+        <button class="btn audio-btn" data-fmt="wav" type="button">WAV</button>
+      </div>
+      <a id="audio-link" class="btn-download" hidden>⬇ Download audio</a>
+    </section>
+  </div>
+
+  <section id="playlist-box" class="panel" hidden>
+    <h2>Playlist</h2>
+    <p id="playlist-title" class="muted"></p>
+    <div class="row">
+      <select id="playlist-quality"></select>
+      <input id="playlist-limit" type="number" min="1" placeholder="Max videos (optional)" style="flex:1">
+      <button id="playlist-zip-btn" class="btn" type="button">⬇ Download all as one ZIP</button>
+    </div>
+    <div id="playlist-progress" class="progress" hidden>
+      <div id="playlist-bar" class="bar"><i></i></div>
+      <p id="playlist-line" class="muted mono"></p>
+    </div>
+    <a id="playlist-link" class="btn-download" hidden>⬇ Download playlist ZIP</a>
+    <ol id="playlist-entries" class="entries"></ol>
+  </section>
+
+  <p class="foot">Every file is prepared on the server with its sound joined in, then the Download button saves it straight to your device — no new tab, nothing to install. For personal use only: download videos you own or have permission to save.</p>
+
+  <section class="history">
+    <h2>RECENT DOWNLOADS</h2>
+    <ul id="history-list" class="job-list"></ul>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
