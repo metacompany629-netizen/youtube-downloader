@@ -3,8 +3,22 @@ R2_* env vars are set, otherwise local disk.
 
 R2 env vars: R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET.
 Local fallback dir: JOBS_DIR (default ./data/jobs).
+
+Placeholder values (e.g. "placeholder", "https://placeholder") count as
+UNSET, so a host that forces all detected env vars to be filled can be
+given dummy R2 values without switching the app off local disk.
 """
 import os
+
+_PLACEHOLDERS = {"", "placeholder", "disabled", "none", "unset",
+                 "dummy", "-", "n/a", "null"}
+
+
+def _is_placeholder(value):
+    if not value:
+        return True
+    v = value.strip().lower()
+    return v in _PLACEHOLDERS or "placeholder" in v
 
 LOCAL_DIR = os.path.abspath(os.environ.get(
     "JOBS_DIR",
@@ -12,10 +26,11 @@ LOCAL_DIR = os.path.abspath(os.environ.get(
 
 
 def r2_enabled():
-    return bool(os.environ.get("R2_ENDPOINT")
-                and os.environ.get("R2_ACCESS_KEY_ID")
-                and os.environ.get("R2_SECRET_ACCESS_KEY")
-                and os.environ.get("R2_BUCKET"))
+    """True only when all four R2 vars hold real (non-placeholder) values."""
+    return all(
+        not _is_placeholder(os.environ.get(key))
+        for key in ("R2_ENDPOINT", "R2_ACCESS_KEY_ID",
+                    "R2_SECRET_ACCESS_KEY", "R2_BUCKET"))
 
 
 def _r2_client():
