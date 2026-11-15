@@ -1,0 +1,68 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #0a0a0a; color: #f2f2f2;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 28px; margin: 0 0 16px; }
+h2 { font-size: 15px; text-align: center; margin: 0 0 14px; color: #ddd; }
+h3 { font-size: 12px; letter-spacing: 1px; color: #bbb; margin: 22px 0 8px; }
+.paste-row { display: flex; gap: 0; }
+.paste-row input { flex: 1; background: #1c1c1c; border: 1px solid #333;
+  color: #fff; padding: 14px; border-radius: 10px 0 0 10px; font-size: 15px;
+  outline: none; min-width: 0; }
+.paste-row input:focus { border-color: #ff2d55; }
+#paste-btn { background: #1c1c1c; color: #ccc; border: 1px solid #333;
+  border-left: none; border-radius: 0 10px 10px 0; padding: 0 18px;
+  cursor: pointer; }
+.big-download { width: 100%; margin-top: 12px; background: #f5274d;
+  color: #fff; border: none; border-radius: 12px; padding: 16px;
+  font-size: 19px; font-weight: 700; cursor: pointer; }
+.big-download:hover { background: #ff3b5c; }
+.hint { text-align: center; color: #999; font-size: 13px; margin: 10px 0 0; }
+.error { color: #ff6b6b; background: #2a1215; border: 1px solid #5a1f24;
+  padding: 10px 12px; border-radius: 8px; }
+.muted { color: #999; font-size: 13px; }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+.result { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+@media (max-width: 720px) { .result { grid-template-columns: 1fr; } }
+.panel { background: #141414; border: 1px solid #262626; border-radius: 14px;
+  padding: 18px; margin-top: 16px; }
+.info img { width: 100%; border-radius: 8px; display: block; }
+.channel { color: #ff2d55; font-weight: 600; margin: 12px 0 4px; font-size: 14px; }
+.title { font-weight: 700; font-size: 16px; margin: 0 0 14px; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-bottom: 16px; }
+.fact-label { display: block; color: #888; font-size: 11px; letter-spacing: 1px; }
+select { width: 100%; background: #1c1c1c; color: #fff; border: 1px solid #333;
+  border-radius: 8px; padding: 12px; font-size: 15px; }
+input[type="number"] { background: #1c1c1c; color: #fff; border: 1px solid #333;
+  border-radius: 8px; padding: 12px; font-size: 15px; min-width: 0; }
+.filesize { text-align: center; color: #aaa; font-size: 13px; }
+.btn-download { display: block; text-align: center; background: #f5274d;
+  color: #fff; text-decoration: none; border-radius: 10px; padding: 13px;
+  font-size: 16px; font-weight: 700; margin-top: 8px; }
+.btn-download:hover { background: #ff3b5c; }
+.btn-download[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.btn { display: block; width: 100%; background: #222; color: #eee;
+  border: 1px solid #333; border-radius: 10px; padding: 12px; font-size: 15px;
+  cursor: pointer; margin-top: 8px; }
+.btn:hover { background: #2c2c2c; }
+.btn.ghost { background: transparent; }
+.row { display: flex; gap: 8px; }
+.row select { flex: 1; }
+.toggle { display: flex; }
+.toggle-btn { background: #222; color: #ddd; border: 1px solid #333;
+  padding: 10px 16px; cursor: pointer; }
+.toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+.toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+.toggle-btn.active { background: #f5274d; color: #fff; border-color: #f5274d; }
+.audio-row .btn { margin-top: 0; }
+.progress { margin-top: 12px; }
+.progress .bar { height: 8px; background: #2a2a2a; border-radius: 4px; overflow: hidden; }
+.progress .bar i { display: block; height: 100%; width: 0%; background: #f5274d; }
+.entries { max-height: 320px; overflow: auto; padding-left: 20px; font-size: 14px; }
+.entries li { padding: 4px 0; color: #ccc; }
+.job-list { list-style: none; padding: 0; margin: 8px 0 0; }
+.job-list li { padding: 8px 0; border-top: 1px solid #222; font-size: 14px;
+  display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.job-list a { color: #ff5c73; }
+.foot { color: #888; font-size: 13px; margin-top: 24px; line-height: 1.5; }
+.history h2 { text-align: left; }
